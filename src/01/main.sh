@@ -3,9 +3,8 @@
 HOSTNAME=`cat /etc/hostname`
 TIMEZONE=`timedatectl | grep "Time zone" | awk '{print $3 $4 $5}'`
 USER=`whoami`
-# **USER** = _текущий пользователь который запустил скрипт_  
-# **OS** = _тип и версия операционной системы_  
-# **DATE** = _текущее время в виде: **12 May 2020 12:24:36**_  
+OS=`cat /proc/version | awk '{print $1,$3,$4}'`
+DATE=`date +"%d %b %Y %T"`
 # **UPTIME** = _время работы системы_  
 # **UPTIME_SEC** = _время работы системы в секундах_  
 # **IP** = _ip-адрес машины в любом из сетевых интерфейсов_  
@@ -20,3 +19,5 @@ USER=`whoami`
 echo "**HOSTNAME** = $HOSTNAME"
 echo "**TIMEZONE** = $TIMEZONE" 
 echo "**USER**     = $USER"
+echo "**OS**       = $OS"
+echo "**DATE**     = $DATE"
