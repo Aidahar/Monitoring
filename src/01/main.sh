@@ -1,34 +1,11 @@
-#!/bin/bash
+#/bin/bash
 
-HOSTNAME=`cat /etc/hostname`
-TIMEZONE=`timedatectl | grep "Time zone" | awk '{print $3 $4 $5}'`
-USER=`whoami`
-OS=`cat /proc/version | awk '{print $1,$3,$4}'`
-DATE=`date +"%d %b %Y %T"`
-UPTIME=`uptime -p`
-UPTIME_SEC=`cat /proc/uptime | awk '{print $2}'`
-IP=`ip r | grep default | awk '/default/ {print $9}'`
-NET_INTERFACE=`ip r | grep default | awk '/default/ {print $5}'`
-MASK=`ifconfig $NET_INTERFACE | grep netmask | awk '{print $4}'`
-GATEWAY=`ip r | grep default | awk '/default/ {print $3}'`
-RAM_TOTAL=`free -m | awk '/Mem:/{printf "%.3f GB", $2/1024}'`
-RAM_USED=`free -m | awk '/Mem:/{printf "%.3f GB", $3/1024}'`
-RAM_FREE=`free -m | awk '/Mem:/{printf "%.3f GB", $4/1024}'`
-# **RAM_USED** = _размер используемой памяти в Гб c точностью три знака после запятой_  
-# **RAM_FREE** = _размер свободной памяти в Гб c точностью три знака после запятой_  
-# **SPACE_ROOT** = _размер рутового раздела в Mб с точностью два знака после запятой в виде: **254.25 MB**_  
-# **SPACE_ROOT_USED** = _размер занятого пространства рутового раздела в Mб с точностью два знака после запятой_  
-# **SPACE_ROOT_FREE** = _размер свободного пространства рутового раздела в Mб с точностью два знака после запятой_
-echo "**HOSTNAME**     = $HOSTNAME"
-echo "**TIMEZONE**     = $TIMEZONE" 
-echo "**USER**         = $USER"
-echo "**OS**           = $OS"
-echo "**DATE**         = $DATE"
-echo "**UPTIME**       = $UPTIME"
-echo "**UPTIME_SEC**   = $UPTIME_SEC"
-echo "**IP**           = $IP"
-echo "**MASK**         = $MASK"
-echo "**GATEWAY**      = $GATEWAY"
-echo "**RAM_TOTAL**    = $RAM_TOTAL"
-echo "**RAM_USED**     = $RAM_USED"
-echo "**RAM_FREE**     = $RAM_FREE"
+if [ $# -ne 1 ]
+    then
+        echo "Требуется 1 параметр!"
+elif [ $(bash script.sh $1) -eq 1 ]
+    then
+        echo "Некорректный ввод!"
+else
+	  echo "$1"
+fi
