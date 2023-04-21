@@ -1,0 +1,17 @@
+[31mRed text[0m
+**[31mHOSTNAME[0m**        = casper
+**TIMEZONE**        = Europe/Moscow(MSK,+0300)
+**USER**            = casper
+**OS**              = Linux 6.1.24-1-lts (linux-lts@archlinux)
+**DATE**            = 21 Apr 2023 07:28:02
+**UPTIME**          = up 1 day
+**UPTIME_SEC**      = 32098.14
+**IP**              = 192.168.1.100
+**MASK**            = 255.255.255.0
+**GATEWAY**         = 192.168.1.1
+**RAM_TOTAL**       = 7.261 GB
+**RAM_USED**        = 2.064 GB
+**RAM_FREE**        = 1.743 GB
+**SPACE_ROOT**      = 239801.00 MB
+**SPACE_ROOT_USED** = 102893.35 MB
+**SPACE_ROOT_FREE** = 135840.52 MB
