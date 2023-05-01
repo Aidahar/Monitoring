@@ -1,6 +1,6 @@
 #/bin/bash
 
-HOSTNAME=`cat /etc/hostname`
+HOSTNAME=`hostnamectl | grep hostname | awk '{printf "%s\n", $3}'`
 TIMEZONE=`timedatectl | grep "Time zone" | awk '{printf "%s ", $3}' && date +"%Z %z"`
 USER=`whoami`
 OS=`cat /proc/version | awk '{print $1,$3,$4}'`
