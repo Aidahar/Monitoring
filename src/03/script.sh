@@ -26,7 +26,7 @@ NORMAL='\033[0m'
 
 case "$1" in
   "1" ) 
-    NAME=$WHITE #White
+    NAME=${WHITE} #White
       ;;
   "2" ) 
     NAME=${RED} #Red
@@ -68,7 +68,7 @@ esac
 
 case "$3" in
   "1" ) 
-    N_SEC=$WHITE #White
+    N_SEC=${WHITE} #White
       ;;
   "2" ) 
     N_SEC=${RED} #Red
@@ -109,7 +109,7 @@ case "$4" in
 esac
 
 HOSTNAME=`cat /etc/hostname`
-TIMEZONE=`timedatectl | grep "Time zone" | awk '{print $3 $4 $5}'`
+TIMEZONE=`timedatectl | grep "Time zone" | awk '{printf "%s ", $3}' && date +"%Z %z"`
 USER=`whoami`
 OS=`cat /proc/version | awk '{print $1,$3,$4}'`
 DATE=`date +"%d %b %Y %T"`

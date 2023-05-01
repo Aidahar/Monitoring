@@ -1,7 +1,7 @@
 #/bin/bash
 
 HOSTNAME=`cat /etc/hostname`
-TIMEZONE=`timedatectl | grep "Time zone" | awk '{print $3 $4 $5}'`
+TIMEZONE=`timedatectl | grep "Time zone" | awk '{printf "%s ", $3}' && date +"%Z %z"`
 USER=`whoami`
 OS=`cat /proc/version | awk '{print $1,$3,$4}'`
 DATE=`date +"%d %b %Y %T"`
