@@ -16,4 +16,4 @@ elif [ $# -ne 4 ]
      done
 fi
 
-./script.sh $BG $SR $BG_S $SR_S
+./colors.sh $BG $SR $BG_S $SR_S
