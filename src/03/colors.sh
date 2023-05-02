@@ -26,86 +26,86 @@ NORMAL='\033[0m'
 
 case "$1" in
   "1" ) 
-    NAME=${WHITE} #White
+    BG=${BGWHITE} #White
       ;;
   "2" ) 
-    NAME=${RED} #Red
+    BG=${BGRED} #Red
       ;;
   "3" ) 
-    NAME=${GREEN} #Green
+    BG=${BGGREEN} #Green
       ;;
   "4" ) 
-    NAME=${BLUE} #Blue
+    BG=${BGBLUE} #Blue
       ;;
   "5" ) 
-    NAME=${MAGENTA} #Purple
+    BG=${BGMAGENTA} #Purple
       ;;
   "6" ) 
-    NAME=${BLACK} #Black
+    BG=${BGBLACK} #Black
       ;;
 esac
 
 case "$2" in
   "1" ) 
-    BG=${BGWHITE} 
+    NAME=${WHITE} 
       ;;
   "2" ) 
-    BG=${BGRED}
+    NAME=${RED}
       ;;
   "3" ) 
-    BG=${BGGREEN} 
+    NAME=${GREEN} 
       ;;
   "4" ) 
-    BG=${BGBLUE}
+    NAME=${BLUE}
       ;;
   "5" ) 
-    BG=${BGMAGENTA} 
+    NAME=${MAGENTA} 
       ;;
   "6" ) 
-    BG=${BGBLACK}
+    NAME=${BLACK}
       ;;
 esac
 
 case "$3" in
   "1" ) 
-    N_SEC=${WHITE} #White
+    BG_SEC=${BGWHITE} #White
       ;;
   "2" ) 
-    N_SEC=${RED} #Red
+    BG_SEC=${BGRED} #Red
       ;;
   "3" ) 
-    N_SEC=${GREEN} #Green
+    BG_SEC=${BGGREEN} #Green
       ;;
   "4" ) 
-    N_SEC=${BLUE} #Blue
+    BG_SEC=${BGBLUE} #Blue
       ;;
   "5" ) 
-    N_SEC=${MAGENTA} #Purple
+    BG_SEC=${BGMAGENTA} #Purple
       ;;
   "6" ) 
-    N_SEC=${BLACK} #Black
+    BG_SEC=${BGBLACK} #Black
       ;;
 esac
 
 case "$4" in
   "1" ) 
-    BG_SEC=${BGWHITE} 
+    N_SEC=${WHITE} 
       ;;
   "2" ) 
-    BG_SEC=${BGRED} 
+    N_SEC=${RED} 
       ;;
   "3" ) 
-    BG_SEC=${BGGREEN} 
+    N_SEC=${GREEN} 
       ;;
   "4" ) 
-    BG_SEC=${BGBLUE} 
+    N_SEC=${BLUE} 
       ;;
   "5" ) 
-    BG_SEC=${BGMAGENTA} 
+    N_SEC=${MAGENTA} 
       ;;
   "6" ) 
-    BG_SEC=${BGBLACK} 
+    N_SEC=${BLACK} 
       ;;
 esac
 
-./data.sh $NAME $BG $N_SEC $BG_SEC 
+./data.sh $BG $NAME $BG_SEC $N_SEC 
