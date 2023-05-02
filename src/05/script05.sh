@@ -3,6 +3,7 @@ TIMEFORMAT="Время выполнения (в секундах) = %R"
 time {
   NAME=$1
   TOTAL_FOLDERS=`(find $NAME -type d | wc -l) 2>/dev/null`
+  MAX_FOLDERS=`(du -hs $NAME* | sort -rh | head -5 | awk '{printf "%s, %s\n", $2, $1}') 2>/dev/null`
   
   TOTAL_FILES=`(find $NAME -type f | wc -l) 2>/dev/null`
   TOTAL_CONFIG=`(find $NAME -type f -name "*.conf" | wc -l) 2>/dev/null`
@@ -13,6 +14,7 @@ time {
   TOTAL_LINK=`(find $NAME -type l | wc -l) 2>/dev/null`
 
   echo -e "Общее число папок, включая вложенные = ${TOTAL_FOLDERS}"
+  echo -e "Топ 5 папок с самым большим весом в порядке убывания (путь и размер):\n${MAX_FOLDERS}"
   echo -e "Общее число файлов = ${TOTAL_FILES}"
   echo -e "Число конфигурационных файлов (с расширением .conf) = ${TOTAL_CONFIG}\nТекстовых файлов = ${TOTAL_TXT}\nИсполняемых файлов = ${TOTAL_EXE}\nЛогов (файлов с расширением .log) = ${TOTAL_LOG}\nАрхивов = ${TOTAL_GZ}\nСимволических ссылок = ${TOTAL_LINK}"
 }
