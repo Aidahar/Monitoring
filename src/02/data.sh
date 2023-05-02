@@ -3,7 +3,7 @@
 HOSTNAME=`hostnamectl | grep hostname | awk '{printf "%s\n", $3}'`
 TIMEZONE=`timedatectl | grep "Time zone" | awk '{printf "%s ", $3}' && date +"%Z %z"`
 USER=`whoami`
-OS=`hostnamectl | grep "Operating System" | awk '{print $3, $4, $5}'`
+OS=`(cat /etc/issue && uname -r) | awk '{printf "%s %s", $1, $2}'`
 DATE=`date +"%d %b %Y %T"`
 UPTIME=`uptime -p`
 UPTIME_SEC=`cat /proc/uptime | awk '{print $2}'`
