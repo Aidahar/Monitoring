@@ -17,14 +17,14 @@ if [ $# -eq 4 ]
         echo -e "Перезапустите скрипт!"
         exit 1
     fi
-    NAME="$1"
-    BG="$2"
-    N_SEC="$3"
-    BG_SEC="$4"
+    BG="$1"
+    NAME="$2"
+    BG_SEC="$3"
+    N_SEC="$4"
 else 
     echo -e "Необходимо ввести 4 параметра в диапазоне от 1 до 6!"
     echo -e "Перезапустите скрипт!"
     exit 1
 fi
 
-./colors.sh $NAME $BG $N_SEC $BG_SEC
+./colors.sh $BG $NAME $BG_SEC $N_SEC 
