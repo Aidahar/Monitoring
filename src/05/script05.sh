@@ -4,7 +4,6 @@ time {
   NAME=$1
   TOTAL_FOLDERS=`(find $NAME -type d | wc -l) 2>/dev/null`
   MAX_FOLDERS=`(du -hs $NAME* | sort -rh | head -5 | awk '{printf "%s, %s\n", $2, $1}') 2>/dev/null`
-  
   TOTAL_FILES=`(find $NAME -type f | wc -l) 2>/dev/null`
   TOTAL_CONFIG=`(find $NAME -type f -name "*.conf" | wc -l) 2>/dev/null`
   TOTAL_TXT=`(find $NAME -type f -name "*.TXT" | wc -l) 2>/dev/null`
@@ -12,7 +11,6 @@ time {
   TOTAL_LOG=`(find $NAME -type f -name "*.log" | wc -l) 2>/dev/null`
   TOTAL_GZ=`(find $NAME -type f -name "*.tar*" | wc -l) 2>/dev/null`
   TOTAL_LINK=`(find $NAME -type l | wc -l) 2>/dev/null`
-
   MAX_FILES=`(find $NAME -type f -exec du -Sh {} + | sort -rh | head -10 | awk '{p=index($2,"."); printf "%s, %s, %s\n", $2, $1, substr($2,p+1)}') 2>/dev/null`
   MAX_EXE_FILES=`(find $NAME -type f -executable -not -path '*/\.*' -exec du -Sh {} + | sort -hr | head -10) 2>/dev/null`
   echo -e "Общее число папок, включая вложенные = ${TOTAL_FOLDERS}"
@@ -20,5 +18,18 @@ time {
   echo -e "Общее число файлов = ${TOTAL_FILES}"
   echo -e "Число конфигурационных файлов (с расширением .conf) = ${TOTAL_CONFIG}\nТекстовых файлов = ${TOTAL_TXT}\nИсполняемых файлов = ${TOTAL_EXE}\nЛогов (файлов с расширением .log) = ${TOTAL_LOG}\nАрхивов = ${TOTAL_GZ}\nСимволических ссылок = ${TOTAL_LINK}"
   echo -e "Топ 10 файлов с самым большим весом в порядке убывания (путь, размер и тип):\n${MAX_FILES}"
+  count=0
+  for line in $MAX_FILES
+  do
+    ((count += 1))
+    printf "%d - %s %s %s\n" $count $line
+  done
+
   echo -e "Топ 10 исполняемых файлов с самым большим весом в порядке убывания (путь, размер и хеш):${MAX_EXE_FILES}"
+  count=0
+  for line in $MAX_EXE_FILES
+  do
+    ((count += 1))
+    printf "\n%d - %s\n" $count $line
+  done
 }
