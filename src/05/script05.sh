@@ -1,7 +1,13 @@
 #!/bin/bash
+
 TIMEFORMAT="Время выполнения (в секундах) = %R"
 time {
   NAME=$1
+  if [ ! -d "$NAME" ]
+    then
+        printf '"%s" is not a directory.\n' "$dirpath"
+        exit 1
+  fi
   TOTAL_FOLDERS=`(find $NAME -type d | wc -l) 2>/dev/null`
   MAX_FOLDERS=`(du -hs $NAME* | sort -rh | head -5 | awk '{printf "%s, %s\n", $2, $1}') 2>/dev/null`
   TOTAL_FILES=`(find $NAME -type f | wc -l) 2>/dev/null`
@@ -12,7 +18,7 @@ time {
   TOTAL_GZ=`(find $NAME -type f -name "*.tar*" | wc -l) 2>/dev/null`
   TOTAL_LINK=`(find $NAME -type l | wc -l) 2>/dev/null`
   MAX_FILES=`(find $NAME -type f -exec du -Sh {} + | sort -rh | head -10 | awk 'BEGIN{i=1}{p=index($2,"."); printf "%d: %s, %s, %s\n", i, $2, $1, substr($2,p+1); i++}') 2>/dev/null`
-  MAX_EXE_FILES=`(find $NAME -type f -executable -not -path '*/\.*' -exec du -Sh {} + | sort -hr | head -10) 2>/dev/null`
+  MAX_EXE_FILES=`(find / -type f -executable -not -path '*/\.*' -exec du -Sh {} + | sort -hr | head -10 | awk 'BEGIN{i=1}{"md5sum " $2 | getline m5s; close("md5sum"); idx=split(m5s, a, " "); printf "%d: %s %s %s\n", i, $2, $1, a[1]; i++}') 2>/dev/null`
   echo -e "Общее число папок, включая вложенные = ${TOTAL_FOLDERS}"
   echo -e "Топ 5 папок с самым большим весом в порядке убывания (путь и размер):\n${MAX_FOLDERS}"
   echo -e "Общее число файлов = ${TOTAL_FILES}"
