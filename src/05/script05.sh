@@ -8,8 +8,8 @@ time {
         printf '"%s" is not a directory.\n' "$dirpath"
         exit 1
   fi
-  TOTAL_FOLDERS=`(find $NAME -type d | wc -l) 2>/dev/null`
-  MAX_FOLDERS=`(du -hs $NAME* | sort -rh | head -5 | awk '{printf "%s, %s\n", $2, $1}') 2>/dev/null`
+  TOTAL_FOLDERS=`(find $NAME ! -path $NAME -type d | wc -l) 2>/dev/null`
+  MAX_FOLDERS=`(find $NAME ! -path $NAME -type d | sort -rh | head -5 | awk '{printf "%s, %s\n", $2, $1}') 2>/dev/null`
   TOTAL_FILES=`(find $NAME -type f | wc -l) 2>/dev/null`
   TOTAL_CONFIG=`(find $NAME -type f -name "*.conf" | wc -l) 2>/dev/null`
   TOTAL_TXT=`(find $NAME -type f -name "*.TXT" | wc -l) 2>/dev/null`
